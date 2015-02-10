@@ -136,11 +136,10 @@ module.exports = function (source, options) {
 		var msg = formatMsg(data, destDir);
 
 		if (matchNoBundledSass.test(msg)) {
-			stream.emit('error', newErr(msg));
-		}
-		else if (!matchNoSass.test(msg)) {
-			gutil.log('gulp-ruby-sass stderr:', msg);
-		}
+            stream.emit('error', newErr(msg));
+        }
+
+		stream.emit('error', newErr(msg));
 	});
 
 	// spawn error: no sass executable
