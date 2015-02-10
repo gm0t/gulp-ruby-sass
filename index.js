@@ -135,10 +135,10 @@ module.exports = function (options) {
 			var msg = removePaths(data, [tempDir, relativeCompileDir]).trim();
 
 			if (noBundleSassMatcher.test(msg)) {
-				stream.emit('error', createErr(bundleErrMsg, {showStack: false}));
-			} else if (!noSassMatcher.test(msg)) {
-				gutil.log('gulp-ruby-sass: stderr:', msg);
-			}
+                return stream.emit('error', createErr(bundleErrMsg, {showStack: false}));
+            }
+
+            stream.emit('error', createErr(msg, {showStack: false}));
 		});
 
 		sass.on('error', function (err) {
